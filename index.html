@@ -5,14 +5,65 @@
   <title>Dominio y Rango de Funciones</title>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    input, select, button { margin: 5px; padding: 5px; }
-    #grafico { width: 100%; max-width: 700px; height: 400px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 20px;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    h2 {
+      color: #004080;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, button {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    input, select {
+      background-color: #ffffff;
+    }
+
+    button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    #resultado {
+      background-color: #e6f0ff;
+      border: 1px solid #99c2ff;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 15px;
+      width: fit-content;
+    }
+
+    #grafico {
+      width: 100%;
+      max-width: 700px;
+      height: 400px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
-  <h2>Dominio y Rango de Funciones</h2>
+  <h2>Calculadora de Dominio y Rango</h2>
 
   <label for="tipo">Tipo de función:</label>
   <select id="tipo">
@@ -31,7 +82,7 @@
 
   <button onclick="calcular()">Calcular y Graficar</button>
 
-  <h3>Resultados</h3>
+  <h3>Resultados:</h3>
   <div id="resultado"></div>
 
   <div id="grafico"></div>
@@ -69,19 +120,29 @@
         <p><strong>Rango:</strong> ${rango}</p>
       `;
 
-      // Gráfico
+      // Gráfico con colores
       const funcion = {
         x: x,
         y: y,
         mode: "lines",
         name: "Función",
-        line: { color: "blue" }
+        line: { color: "#ff6600", width: 3 }
       };
 
       Plotly.newPlot("grafico", [funcion], {
         title: "Gráfico de la Función",
-        xaxis: { title: "x" },
-        yaxis: { title: "f(x)" }
+        paper_bgcolor: "#f0f4f8",
+        plot_bgcolor: "#ffffff",
+        xaxis: {
+          title: "x",
+          gridcolor: "#cccccc",
+          zeroline: true
+        },
+        yaxis: {
+          title: "f(x)",
+          gridcolor: "#cccccc",
+          zeroline: true
+        }
       });
     }
   </script>
